@@ -7,7 +7,7 @@ export default {
     const ua = req.headers.get("user-agent") || "";
     const isBounceUA = /\bbounceme\b/i.test(ua);
     const res = await fetch(req);
-    if (res.status === 502 || res.status === 521 || res.status === 523 ||  isBounceUA) {
+    if ( res.status === 502 || res.status === 521 || res.status === 523 || isBounceUA ) {
       const html = `<!doctype html>
 <html lang="en">
 <head>
