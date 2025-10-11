@@ -6,6 +6,8 @@ compatibility_date = "2025-10-10"
 
 workers_dev = false
 
+send_metrics = false
+
 [[routes]]
 pattern = "www.searchforjohn.com/*"
 zone_name = "searchforjohn.com"
