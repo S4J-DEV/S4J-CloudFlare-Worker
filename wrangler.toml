@@ -1,3 +1,15 @@
 # wrangler.toml (wrangler v3.88.0^)
+
+name = "s4j-cloudflare-worker"
+main = "worker.js"
+compatibility_date = "2025-10-10"
+
+workers_dev = false
+
+[[routes]]
+pattern = "www.searchforjohn.com/*"
+zone_name = "searchforjohn.com"
+custom_domain = true
+
 [observability]
 enabled = false
