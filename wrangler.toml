@@ -1,6 +1,6 @@
 # wrangler.toml (wrangler v3.88.0^)
 
-name = "s4j-cloudflare-worker"
+name = "s4j-redirector"
 main = "worker.js"
 compatibility_date = "2025-10-10"
 
