@@ -24,6 +24,7 @@ export default {
       background: #222428;
       color: #bbb;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
@@ -35,6 +36,7 @@ export default {
       max-width: 52rem; line-height: 1.5;
       font-size: clamp(1rem, 2.5vw + 0.5rem, 1.35rem);
     }
+    noscript { display: block; margin-top: 1rem; width: 100%; }
   </style>
 </head>
 <body>
