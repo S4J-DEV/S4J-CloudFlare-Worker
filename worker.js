@@ -42,6 +42,7 @@ export default {
 <body>
   <div class="box">
     The S4J server is currently having issues or restarting.
+    <br>
     We are working to fix it.
   </div>
   <script>
