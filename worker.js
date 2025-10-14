@@ -11,12 +11,11 @@ export default {
       const html = `<!doctype html>
 <html lang="en">
 <head>
+  <!-- LICENSE: https://github.com/S4J-DEV/S4J-CloudFlare-Worker/blob/main/LICENSE.md -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark light" />
   <title>Redirecting…</title>
-  <meta http-equiv="refresh" content="0; url=${dest}" />
-  <!-- LICENSE: https://github.com/S4J-DEV/S4J-CloudFlare-Worker/blob/main/LICENSE.md -->
   <style>
     :root { color-scheme: dark; }
     html, body { height: 100%; }
@@ -28,35 +27,42 @@ export default {
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      padding: 2rem;
     }
-    .wrap { box-sizing: border-box; width: 100%; padding: 6vh 8vw; }
-    .msg {
-      font-weight: 700;
-      line-height: 1.25;
-      font-size: clamp(1.75rem, 5vw, 4rem);
-      margin: 0 auto;
-      overflow-wrap: anywhere;
-      word-break: break-word;
+    a { color: #bbb; text-decoration: underline; }
+    .box {
+      max-width: 52rem; line-height: 1.5;
+      font-size: clamp(1rem, 2.5vw + 0.5rem, 1.35rem);
     }
-    a { color: #bbb; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <p class="msg">
-      The S4J server is currently having issues.<br>
-      We’re redirecting you to the server status page
-      <a href="${dest}" rel="noopener noreferrer">${dest}</a>.
-    </p>
-    <noscript>
-      <p style="margin-top:1rem">
-        JavaScript is disabled. If you are not redirected automatically, use the link above.
-      </p>
-    </noscript>
+  <div class="box">
+    The S4J server is currently having issues or restarting.
+    We are working to fix it.
   </div>
+  <script>
+    (function () {
+      var m = new Date().getMinutes();
+      var nearTop = (m <= 2); // XX:00, XX:01, XX:02
+      if (nearTop) {
+        // Keep refreshing this same URL until we're out of the window or it loads.
+        setTimeout(function () { location.reload(); }, 2000);
+      } else {
+        // Normal behavior: redirect to status page.
+        var dest = ${JSON.stringify(dest)};
+        try { location.replace(dest); }
+        catch (e) { location.href = dest; }
+      }
+    })();
+  </script>
+  <noscript>
+    <p>If you’re not redirected, try reloading the page or visiting <a href="${dest}">${dest}</a>.</p>
+  </noscript>
 </body>
-</html>`;
+</html>
+`;
       return new Response(html, {
         status: 200,
         headers: {
