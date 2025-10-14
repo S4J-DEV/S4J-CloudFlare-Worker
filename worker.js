@@ -47,12 +47,10 @@ export default {
   <script>
     (function () {
       var m = new Date().getMinutes();
-      var nearTop = (m <= 2); // XX:00, XX:01, XX:02
+      var nearTop = (m <= 3); // XX:00, XX:01, XX:02, XX:03
       if (nearTop) {
-        // Keep refreshing this same URL until we're out of the window or it loads.
         setTimeout(function () { location.reload(); }, 2000);
       } else {
-        // Normal behavior: redirect to status page.
         var dest = ${JSON.stringify(dest)};
         try { location.replace(dest); }
         catch (e) { location.href = dest; }
