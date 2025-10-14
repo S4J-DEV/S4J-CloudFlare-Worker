@@ -14,3 +14,6 @@ zone_name = "searchforjohn.com"
 
 [observability]
 enabled = false
+
+[placement]
+mode = "smart"
